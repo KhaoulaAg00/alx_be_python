@@ -11,24 +11,30 @@ def main():
         display_menu()
         choice = input("Enter your choice: ")
 
-        if choice == '1':
+        if not choice.isdigit():
+            print("Invalid input. Please enter a number between 1 and 4.")
+            continue
+
+        choice = int(choice)
+
+        if choice == 1:
             item = input("Enter the item name to add: ")
             shopping_list.append(item)
             print(f"'{item}' has been added to the list.")
-        elif choice == '2':
+        elif choice == 2:
             item = input("Enter the item name to remove: ")
             if item in shopping_list:
                 shopping_list.remove(item)
                 print(f"'{item}' has been removed from the list.")
             else:
                 print(f"'{item}' not found in the list.")
-        elif choice == '3':
+        elif choice == 3:
             print("Current Shopping List:")
             if not shopping_list:
                 print("The shopping list is empty.")
             for i, item in enumerate(shopping_list, start=1):
                 print(f"{i}. {item}")
-        elif choice == '4':
+        elif choice == 4:
             print("Goodbye!")
             break
         else:
@@ -37,3 +43,4 @@ def main():
 if __name__ == "__main__":
     main()
 
+    
