@@ -24,6 +24,8 @@ def main():
                 print(f"'{item}' not found in the list.")
         elif choice == '3':
             print("Current Shopping List:")
+            if not shopping_list:
+                print("The shopping list is empty.")
             for i, item in enumerate(shopping_list, start=1):
                 print(f"{i}. {item}")
         elif choice == '4':
@@ -34,3 +36,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
