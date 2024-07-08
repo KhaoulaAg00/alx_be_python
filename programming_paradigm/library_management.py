@@ -49,4 +49,5 @@ class Library:
                 print(f"{book.title} by {book.author}")
 
 if __name__ == "__main__":
+    # Optional test code can be added here
     pass
