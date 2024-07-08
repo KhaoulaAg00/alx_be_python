@@ -48,5 +48,17 @@ class Library:
             if book.is_available():
                 print(f"{book.title} by {book.author}")
 
+def validate_methods():
+    book_methods = ['check_out', 'return_book', 'is_available']
+    library_methods = ['add_book', 'check_out_book', 'return_book', 'list_available_books']
+
+    for method in book_methods:
+        if not hasattr(Book, method) or not callable(getattr(Book, method)):
+            print(f"Error: Method '{method}' is missing or not callable in Book class")
+
+    for method in library_methods:
+        if not hasattr(Library, method) or not callable(getattr(Library, method)):
+            print(f"Error: Method '{method}' is missing or not callable in Library class")
+
 if __name__ == "__main__":
-    pass
+    validate_methods()
