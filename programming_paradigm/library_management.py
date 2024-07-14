@@ -1,5 +1,3 @@
-# library_management.py
-
 class Book:
     def __init__(self, title, author):
         self.title = title
@@ -21,7 +19,6 @@ class Book:
     def is_available(self):
         return not self._is_checked_out
 
-
 class Library:
     def __init__(self):
         self._books = []
@@ -31,34 +28,30 @@ class Library:
 
     def check_out_book(self, title):
         for book in self._books:
-            if book.title == title and book.is_available():
-                book.check_out()
-                return True
-        return False
+            if book.title == title:
+                if book.check_out():
+                    print(f"'{title}' has been checked out.")
+                    return
+                else:
+                    print(f"'{title}' is already checked out.")
+                    return
+        print(f"'{title}' not found in the library.")
 
     def return_book(self, title):
         for book in self._books:
-            if book.title == title and not book.is_available():
-                book.return_book()
-                return True
-        return False
+            if book.title == title:
+                if book.return_book():
+                    print(f"'{title}' has been returned.")
+                    return
+                else:
+                    print(f"'{title}' was not checked out.")
+                    return
+        print(f"'{title}' not found in the library.")
 
     def list_available_books(self):
-        for book in self._books:
-            if book.is_available():
+        available_books = [book for book in self._books if book.is_available()]
+        if available_books:
+            for book in available_books:
                 print(f"{book.title} by {book.author}")
-
-def validate_methods():
-    book_methods = ['check_out', 'return_book', 'is_available']
-    library_methods = ['add_book', 'check_out_book', 'return_book', 'list_available_books']
-
-    for method in book_methods:
-        if not hasattr(Book, method) or not callable(getattr(Book, method)):
-            print(f"Error: Method '{method}' is missing or not callable in Book class")
-
-    for method in library_methods:
-        if not hasattr(Library, method) or not callable(getattr(Library, method)):
-            print(f"Error: Method '{method}' is missing or not callable in Library class")
-
-if __name__ == "__main__":
-    validate_methods()
+        else:
+            print("No available books in the library.")
