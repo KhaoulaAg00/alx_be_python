@@ -1,33 +1,31 @@
-# library_system.py
+# main.py
 
-class Book:
-    def __init__(self, title, author):
-        self.title = title
-        self.author = author
+from library_system import Book, EBook, PrintBook, Library
 
-class EBook(Book):
-    def __init__(self, title, author, file_size):
-        super().__init__(title, author)
-        self.file_size = file_size
+def main():
+    # Testing Book class initialization
+    book1 = Book("Pride and Prejudice", "Jane Austen")
+    print(f"Book 1: {book1.title} by {book1.author}")
 
-class PrintBook(Book):
-    def __init__(self, title, author, page_count):
-        super().__init__(title, author)
-        self.page_count = page_count
+    # Testing EBook class initialization
+    ebook1 = EBook("Snow Crash", "Neal Stephenson", 500)
+    print(f"EBook 1: {ebook1.title} by {ebook1.author}, File Size: {ebook1.file_size}KB")
 
-class Library:
-    def __init__(self):
-        self.books = []
+    # Testing PrintBook class initialization
+    printbook1 = PrintBook("The Catcher in the Rye", "J.D. Salinger", 234)
+    print(f"PrintBook 1: {printbook1.title} by {printbook1.author}, Page Count: {printbook1.page_count}")
 
-    def add_book(self, book):
-        self.books.append(book)
+    # Testing Library class and methods
+    my_library = Library()
 
-    def list_books(self):
-        for book in self.books:
-            if isinstance(book, Book):
-                print(f"Book: {book.title} by {book.author}")
-            elif isinstance(book, EBook):
-                print(f"EBook: {book.title} by {book.author}, File Size: {book.file_size}KB")
-            elif isinstance(book, PrintBook):
-                print(f"PrintBook: {book.title} by {book.author}, Page Count: {book.page_count}")
+    # Add books to the library
+    my_library.add_book(book1)
+    my_library.add_book(ebook1)
+    my_library.add_book(printbook1)
 
+    # List all books in the library
+    print("\nListing all books in the library:")
+    my_library.list_books()
+
+if __name__ == "__main__":
+    main()
